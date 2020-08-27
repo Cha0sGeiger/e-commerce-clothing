@@ -56,10 +56,12 @@ class App extends React.Component {
 }
 
 const mapStateToProps = ({ user }) => ({
+	// we are destructuring our userReducer
 	currentUser: user.currentUser
 });
 
 const mapDispatchToProps = (dispatch) => ({
+	// we are updating our redux reducer with our actions
 	setCurrentUser: (user) => dispatch(setCurrentUser(user))
 });
 

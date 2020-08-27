@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'; // HOC
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/Firebase.utils';
+import CartIcon from '../cart-icon/Cart-Icon';
+import CartDropdown from '../cart-dropdown/Cart-Dropdown';
 
 import './Header.styles.scss';
 
@@ -28,11 +30,15 @@ const Header = ({ currentUser }) => (
 					SIGN IN
 				</Link>
 			)}
+			<CartIcon />
 		</div>
+		<CartDropdown />
 	</div>
 );
 
 const mapStateToProps = (state) => ({
+	// getting state from our reducers
+	// state is top lvl root reducer
 	currentUser: state.user.currentUser
 });
 
