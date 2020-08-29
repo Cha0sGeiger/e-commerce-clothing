@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'; // HOC
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../redux/user/user.selector';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/Firebase.utils';
@@ -36,11 +39,11 @@ const Header = ({ currentUser, hidden }) => (
 	</div>
 );
 
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+const mapStateToProps = createStructuredSelector({
 	// getting state from our reducers
 	// state is top lvl root reducer
-	currentUser,
-	hidden
+	currentUser: selectCurrentUser,
+	hidden: selectCartHidden
 });
 
 export default connect(mapStateToProps)(Header);

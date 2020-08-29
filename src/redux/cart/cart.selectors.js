@@ -9,3 +9,9 @@ export const selectCartItemsCount = createSelector(
 	(cartItems) => cartItems.reduce((accumalatedQuantity, cartItem) => accumalatedQuantity + cartItem.quantity, 0) // native function
 	// first argument is sum of every passing through our cartItems, so if our array has values 1, 2, 3 - it will be 0 + 1, 1 + 2, 3+3 = 6
 );
+
+export const selectCartHidden = createSelector([ selectCart ], (cart) => cart.hidden);
+
+export const selectCartTotal = createSelector([ selectCartItems ], (cartItems) =>
+	cartItems.reduce((accumalatedQuantity, cartItem) => accumalatedQuantity + cartItem.quantity * cartItem.price, 0)
+);
